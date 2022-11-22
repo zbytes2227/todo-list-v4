@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <div class="box" id="heading">
+        <h1>
+            <%= ListTitle %>
+        </h1>
+    </div>
+
+    <div class="box">
+        <% todoItems.forEach(todoItem=> { %>
+            <form action="/delete" method="post">
+                <div class="item">
+                    <input type="checkbox" name="checkbox" value="<%= todoItem._id %>" onchange=this.form.submit()>
+                    <input type="hidden" name="ListName" value="<%= ListTitle %>">
+                    <p>
+                        <%= todoItem.name %>
+                    </p>
+                </div>
+            </form>
+            <% }) %>
+
+                <form action="/" method="post" class="item">
+                    <input type="text" name="newTodo" required placeholder="Add new Todo" autocomplete="off">
+                    <button type="submit" class="addTaskBtn" name="listName" value="<%= ListTitle %>">+</button>
+                </form>
+    </div>
+
+</body>
+
+</html>
